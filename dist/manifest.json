@@ -1,0 +1,326 @@
+{
+	"_version": "1.48.0",
+	"sap.app": {
+		"id": "pickingapp.pickingapp",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:lrop",
+			"version": "1.10.0",
+			"toolsId": "e480b309-2a7c-4eb8-8e45-f3d111099cde"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZSCM_PICKINGAPP_SRV/",
+				"type": "OData",
+				"settings": {
+					"annotations": [
+						"ZSCM_PICKINGAPP_SRV_VAN",
+						"annotation"
+					],
+					"localUri": "localService/metadata.xml",
+					"odataVersion": "2.0"
+				}
+			},
+			"ZSCM_PICKINGAPP_SRV_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSCM_PICKINGAPP_SRV_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/ZSCM_PICKINGAPP_SRV_VAN.xml"
+				}
+			},
+			"annotation": {
+				"type": "ODataAnnotation",
+				"uri": "annotations/annotation.xml",
+				"settings": {
+					"localUri": "annotations/annotation.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": true,
+		"dependencies": {
+			"minUI5Version": "1.108.16",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ushell": {},
+				"sap.f": {},
+				"sap.ui.comp": {},
+				"sap.ui.generic.app": {},
+				"sap.suite.ui.generic.template": {},
+				"sap.ui.fl": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "pickingapp.pickingapp.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"refreshAfterChange": false,
+					"metadataUrlParams": {
+						"sap-value-list": "none"
+					}
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			}
+		},
+		"resources": {
+			"css": []
+		},
+		"routing": {
+			"config": {},
+			"routes": [],
+			"targets": {}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.viewExtensions": {
+					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
+						"ReplaceFacet|ZSCM_C_PICKINGAPP|OutboundDelInfoPar": {
+							"type": "XML",
+							"className": "sap.ui.core.mvc.View",
+							"viewName": "pickingapp.pickingapp.ext.View.ObjectPageContent",
+							"sap.ui.generic.app": {
+								"settings": {
+									"objectPageColumns": {
+										"screenSizeXL": 4,
+										"useColumnLayoutForSmartForm": false
+									}
+								},
+								"title": "Outbound Delivery Information"
+							}
+						}
+					}
+				},
+				"sap.ui.controllerExtensions": {
+					"sap.suite.ui.generic.template.ListReport.view.ListReport": {
+						"controllerName": "pickingapp.pickingapp.ext.controller.ListReportExt"
+					},
+					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
+						"controllerName": "pickingapp.pickingapp.ext.controller.ObjectPageExt",
+						"sap.ui.generic.app": {
+							"ZSCM_C_PICKINGAPP": {
+								"EntitySet": "ZSCM_C_PICKINGAPP",
+								"Sections": {
+									"ScenarioHU": {
+										"id": "ScenarioHU",
+										"Actions": {
+											"scanHU": {
+												"id": "scanHUButton",
+												"text": "Scan HU",
+												"press": "scanHU",
+												"requiresSelection": true
+											}
+										}
+									},
+									"ScenarioNoHU": {
+										"id": "ScenarioNoHU",
+										"Actions": {
+											"addbatch": {
+												"id": "addbatchButton",
+												"text": "Add Batch",
+												"press": "addBatch",
+												"requiresSelection": true
+											}
+										}
+									}
+								}
+							},
+							"ZSCM_I_Bakery_L2": {
+								"EntitySet": "ZSCM_I_Bakery_L2",
+								"Sections": {
+									"PickList": {
+										"id": "PickList",
+										"Actions": {
+											"addBatchBakery": {
+												"id": "addBatchBakeryButton",
+												"text": "Add Batch",
+												"press": "addBatchBakery",
+												"requiresSelection": true
+											}
+										}
+									}
+								}
+							},
+							"ZSCM_PickList_S2_L1": {
+								"EntitySet": "ZSCM_PickList_S2_L1",
+								"Sections": {
+									"BulkProd": {
+										"id": "BulkProd",
+										"Actions": {
+											"removeBatch": {
+												"id": "removeBatchButton",
+												"text": "Remove Batch",
+												"press": "removeBatch",
+												"requiresSelection": true
+											}
+										}
+									}
+								}
+							},
+							"ZSCM_I_Bakery_PickList_L2": {
+								"EntitySet": "ZSCM_I_Bakery_PickList_L2",
+								"Sections": {
+									"PickList": {
+										"id": "PickList",
+										"Actions": {
+											"removeBatchBakery": {
+												"id": "removeBatchBakeryButton",
+												"text": "Remove Batch",
+												"press": "removeBatchBakery",
+												"requiresSelection": true
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"sap.ui.generic.app": {
+		"_version": "1.3.0",
+		"settings": {
+			"forceGlobalRefresh": false,
+			"objectPageHeaderType": "Dynamic",
+			"considerAnalyticalParameters": true,
+			"showDraftToggle": false
+		},
+		"pages": {
+			"ListReport|ZSCM_C_PICKINGAPP": {
+				"entitySet": "ZSCM_C_PICKINGAPP",
+				"component": {
+					"name": "sap.suite.ui.generic.template.ListReport",
+					"list": true,
+					"settings": {
+						"condensedTableLayout": true,
+						"smartVariantManagement": true,
+						"enableTableFilterInPageVariant": true,
+						"filterSettings": {
+							"dateSettings": {
+								"useDateRange": true
+							}
+						}
+					}
+				},
+				"pages": {
+					"ObjectPage|ZSCM_C_PICKINGAPP": {
+						"entitySet": "ZSCM_C_PICKINGAPP",
+						"defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+						"component": {
+							"name": "sap.suite.ui.generic.template.ObjectPage"
+						},
+						"pages": {
+							"ObjectPage|ZSCM_PickList_S1_L2": {
+								"component": {
+									"name": "sap.suite.ui.generic.template.ObjectPage"
+								},
+								"entitySet": "ZSCM_PickList_S1_L2"
+							},
+							"ObjectPage|ZSCM_PickList_S2_L1": {
+								"component": {
+									"name": "sap.suite.ui.generic.template.ObjectPage"
+								},
+								"entitySet": "ZSCM_PickList_S2_L1"
+							}
+						}
+					},
+					"ObjectPage|ZSCM_I_Bakery_L2": {
+						"entitySet": "ZSCM_I_Bakery_L2",
+						"navigationProperty": "to_Bakery",
+						"component": {
+							"name": "sap.suite.ui.generic.template.ObjectPage",
+							"settings": {
+								"sections": {
+									"PickList": {
+										"quickVariantSelection": {
+											"variants": {
+												"0": {
+													"key": "NotPicked",
+													"annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#NotPicked"
+												},
+												"1": {
+													"key": "Picked",
+													"annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Picked"
+												}
+											},
+											"showCounts": true
+										}
+									}
+								}
+							}
+						},
+						"pages": {
+							"ObjectPage|ZSCM_I_Bakery_PickList_L2": {
+								"entitySet": "ZSCM_I_Bakery_PickList_L2",
+								"component": {
+									"name": "sap.suite.ui.generic.template.ObjectPage",
+									"settings": {
+										"quickVariantSelection": {
+											"showCounts": true,
+											"variants": {
+												"0": {
+													"key": "_tab1",
+													"annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#NotPicked"
+												},
+												"1": {
+													"key": "_tab2",
+													"annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#Picked"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "transactional"
+	}
+}

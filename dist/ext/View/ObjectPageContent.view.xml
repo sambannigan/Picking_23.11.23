@@ -1,0 +1,41 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield">
+    <!-- controllerName="pickingapp.pickingapp.ext.controller.ObjectPageExt"> -->
+
+    <smartForm:SmartForm id="smartformImportance" title="{Name}">
+        <smartForm:layout>
+            <smartForm:ColumnLayout id="Layout" columnsM="2" columnsL="3" columnsXL="4"/>
+        </smartForm:layout>
+
+
+       <smartForm:Group id="OutboundDeliveryGroup" title ="Outbound Delivery Information">
+            <smartForm:GroupElement id="carrierDescElement" label="Carrier" >
+                <smartField:SmartField id="carrierDescID" value="{carrier}" />
+            </smartForm:GroupElement>
+            <smartForm:GroupElement id="plantElement"  label="Plant ID" >
+                <smartField:SmartField id="plantID" value="{plant}"/>
+            </smartForm:GroupElement>
+            <smartForm:GroupElement id="shippingPointElementID" label="Shipping Point">
+                <smartField:SmartField id="shippingPointID" value="{shippingPoint}"/>
+            </smartForm:GroupElement>
+            <smartForm:GroupElement id="outboundDeliveryElementID"  label="Outbound Delivery">
+                <smartField:SmartField id="outboundDeliveryID"  value="{outboundDelivery}"/>
+            </smartForm:GroupElement>
+            <smartForm:GroupElement id="goodsIssueDate" label="Planned GI Date" >
+                <smartField:SmartField id="goodsIssueDateID" value="{goodsIssueDate}"/>
+            </smartForm:GroupElement>
+            <smartForm:GroupElement id="shipToDesc" label="Ship To">
+                <smartField:SmartField id="shipToDescID" value="{shipToDesc}"/>
+            </smartForm:GroupElement> 
+            <smartForm:GroupElement id="shipping_instructions" label="Shipping Instructions" >
+                <ExpandableText id="shipping_instructionsID" text="{shipping_instructions}"  overflowMode= "InPlace" />
+            </smartForm:GroupElement> 
+        </smartForm:Group>
+
+
+    </smartForm:SmartForm>
+</mvc:View> 
